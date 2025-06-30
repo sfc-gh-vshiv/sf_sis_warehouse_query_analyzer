@@ -1,0 +1,13 @@
+name: app_environment
+channels:
+  - snowflake
+dependencies:
+  - plotly=6.0.1
+  - prophet=1.1.5
+  - python=3.11.*
+  - scikit-learn=1.6.1
+  - scipy=1.15.3
+  - snowflake-snowpark-python=
+  - statsmodels=0.14.4
+  - streamlit=
+
