@@ -225,6 +225,10 @@ with st.sidebar:
     # Date range selector
     weeks_back = st.slider("Weeks of history", min_value=2, max_value=12, value=4)
     
+    # Cloud services inclusion
+    include_cloud_services = st.checkbox("☁️ Include Cloud Services", value=True, 
+                                       help="Include CLOUD_SERVICES_ONLY warehouse data in all metrics and charts")
+    
     # Forecasting options
     if PROPHET_AVAILABLE:
         st.subheader("🔮 Forecasting")
@@ -548,6 +552,19 @@ if df_queries is None:
 else:
     df_queries = df_queries.loc[:, ~df_queries.columns.duplicated()]
 
+# Apply cloud services filtering based on user preference
+if not include_cloud_services:
+    # Filter out CLOUD_SERVICES_ONLY from warehouse data
+    if df is not None and not df.empty and 'warehouse_name' in df.columns:
+        df = df[df['warehouse_name'] != 'CLOUD_SERVICES_ONLY'].copy()
+    
+    if df_current is not None and not df_current.empty and 'warehouse_name' in df_current.columns:
+        df_current = df_current[df_current['warehouse_name'] != 'CLOUD_SERVICES_ONLY'].copy()
+    
+    # Filter out CLOUD_SERVICES_ONLY from query data
+    if df_queries is not None and not df_queries.empty and 'warehouse_name' in df_queries.columns:
+        df_queries = df_queries[df_queries['warehouse_name'] != 'CLOUD_SERVICES_ONLY'].copy()
+
 # Additional check for empty dataframes
 if df is None or df.empty or df_current is None:
     st.warning("No warehouse usage data found for the selected time period.")
@@ -559,6 +576,8 @@ if df is None or df.empty or df_current is None:
         with tab:
             st.info(f"No data available for {message}.")
     st.stop()
+
+
 
 # Enhanced tabs
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["📊 Summary", "🚨 Spike Detection", "📈 Trends & Forecasting", "🔍 Deep Analytics", "🔍 Query Analysis", "📋 Raw Data"])
@@ -818,12 +837,12 @@ with tab2:
                 
                 # Create custom colorscale with white for zero values
                 colorscale = [
-                    [0.0, '#d73027'],    # Red for negative
+                    [0.0, '#4575b4'],    # Blue for negative (decreases)
                     [0.48, '#ffffbf'],   # Light yellow
                     [0.495, '#ffffff'],  # White for zero
                     [0.505, '#ffffff'],  # White for zero
                     [0.52, '#ffffbf'],   # Light yellow
-                    [1.0, '#4575b4']     # Blue for positive
+                    [1.0, '#d73027']     # Red for positive (spikes)
                 ]
                 
                 # Determine range for color scale
