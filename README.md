@@ -2,6 +2,8 @@
 
 A comprehensive **Streamlit in Snowflake (SiS)** application for monitoring warehouse credit usage, detecting consumption spikes, and analyzing query performance with advanced predictive analytics and machine learning capabilities.
 
+![Home Page](screenshots/home_page.png)
+
 ## 🚀 Streamlit in Snowflake (SiS) Application
 
 This application runs natively within your Snowflake environment using **Streamlit in Snowflake**, providing:
@@ -25,11 +27,15 @@ This application runs natively within your Snowflake environment using **Streaml
 - **Smart Filtering**: Option to show only warehouses with spikes
 - **Zero Handling**: Displays hyphens for 0% changes with white backgrounds
 
+![Spike Detection](screenshots/spike_detection.png)
+
 ### 📈 Trends & Forecasting
 - **Prophet-Based Predictions**: Advanced time series forecasting (1-8 weeks ahead)
 - **Interactive Charts**: Warehouse selection with confidence intervals
 - **Trend Analysis**: Rolling averages and seasonal pattern detection
 - **Forecasting Controls**: Configurable prediction periods and parameters
+
+![Forecasting](screenshots/forecasting.png)
 
 ### 🔍 Deep Analytics
 - **Machine Learning Anomaly Detection**: Isolation Forest algorithm with sensitivity controls
@@ -38,6 +44,9 @@ This application runs natively within your Snowflake environment using **Streaml
 - **Efficiency Rankings**: Performance comparisons with visual indicators
 - **Dynamic Visualizations**: Scatter plots with anomaly severity indicators
 
+
+![Warehouse Performance](screenshots/warehouse_performance.png)
+
 ### 🔍 Query-Level Analysis (NEW!)
 - **Query Performance Metrics**: Execution times, data scanned, success rates
 - **Warehouse Query Analysis**: Performance by warehouse with efficiency metrics
@@ -45,6 +54,8 @@ This application runs natively within your Snowflake environment using **Streaml
 - **User Activity Analysis**: Top users and role-based usage patterns
 - **Efficiency Analysis**: Spillage rates, partition pruning effectiveness
 - **Resource Utilization**: Credits per query, bytes scanned analysis
+
+![Query Analytics](screenshots/query_analytics.png)
 
 ### 📋 Raw Data & Export
 - **Advanced Filtering**: Multi-dimensional filtering with warehouse and credit thresholds
